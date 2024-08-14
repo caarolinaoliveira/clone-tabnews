@@ -4,12 +4,14 @@
   "description": "\"# clone-tabnews\"",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run dockercompose:up && next dev",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "docker:compose": "docker compose -f infra/compose.yaml up"
+    "dockercompose:up": "docker compose -f infra/compose.yaml up -d",
+    "dockercompose:stop": "docker compose -f infra/compose.yaml stop",
+    "dockercompose:down": "docker compose -f infra/compose.yaml down"
   },
   "author": "",
   "license": "MIT",
