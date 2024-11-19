@@ -9,15 +9,13 @@ async function waitForAllServices() {
       maxTimeout: 1000,
     });
   }
-
   async function fetchStatusPage() {
     const response = await fetch(
       "https://carolinaoliveira-dev.com.br/api/v1/status",
     );
-    const responseBody = await response.json();
-    // if(response.status !== 200){
-    //   throw new Error(`Unexpected status code: ${response.status}`);
-    // }
+    if (response.status !== 200) {
+      throw Error(`Unexpected status code: ${response.status}`);
+    }
   }
 }
 
