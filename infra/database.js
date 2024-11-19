@@ -29,7 +29,7 @@ async function getNewCliente() {
 
 export default {
   query,
-  getNewCliente
+  getNewCliente,
 };
 
 function getSSLValues() {
