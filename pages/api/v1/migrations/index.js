@@ -6,7 +6,9 @@ import { error } from "node:console";
 export default async function migrations(request, response) {
   const alloweMethods = ["GET", "POST"];
   if (!alloweMethods.includes(request.method)) {
-    return response.status(405).json({error: `Method ${request.method} not allowed`,}); 
+    return response
+      .status(405)
+      .json({ error: `Method ${request.method} not allowed` });
   }
   let dbClient;
   try {

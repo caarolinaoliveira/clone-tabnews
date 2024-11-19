@@ -13,7 +13,7 @@ const nextJest = require("next/jest");
 const createJestConfig = nextJest({ dir: "." });
 const jestConfig = createJestConfig({
   moduleDirectories: ["node_modules", "<rootDir>"],
-  testTimeout:60000,
+  testTimeout: 60000,
 });
 // o que a função nextJest devolve? devolve várias outras funções
 // ela é uma fábrica de funções (factory)
