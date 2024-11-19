@@ -1,14 +1,15 @@
 import database from "infra/database";
+import orchestrator from "../orchestrator.js";
 
-database.query("SELECT 1 + 1;");
-
-beforeAll(cleanDataBase);
-async function cleanDataBase() {
+beforeAll(async () => {
+  await orchestrator.waitForAllServices();
   await database.query("drop schema public cascade; create schema public");
-}
+});
+// database.query("SELECT 1 + 1;");
+
 
 test("GET to /api/v1/migrations should return 200", async () => {
-  const response = await fetch("http://localhost:3000/api/v1/migrations");
+  const response = await fetch("https://carolinaoliveira-dev.com.br/api/v1/migrations");
   expect(response.status).toBe(200);
 
   const responseBody = await response.json();
