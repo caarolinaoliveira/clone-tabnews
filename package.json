@@ -7,7 +7,7 @@
     "dev": "npm run dockercompose:up  && npm run migration:up && next dev",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
-    "test": "npm run dockercompose:up && concurrently -n next, jest --hide next -k -s command-jest \"next dev\" \"jest --runInBand --verbose\"",
+    "test": "npm run dockercompose:up && concurrently -n next,jest --hide next -k -s command-jest \"next dev\" \"jest --runInBand --verbose\"",
     "test:watch": "jest --watchAll --runInBand",
     "dockercompose:up": "docker compose -f infra/compose.yaml up -d",
     "dockercompose:stop": "docker compose -f infra/compose.yaml stop",
@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "jest": "^29.6.2",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "concurrently": "^9.1.0"
   }
 }
