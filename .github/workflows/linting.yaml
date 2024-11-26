@@ -8,32 +8,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-          # Adicionando o fetch-depth para pegar o histórico completo
       - uses: actions/setup-node@v4
         with:
           node-version: "lts/hydrogen"
       - run: npm ci
       - run: npm run lint:prettier:check
-
   eslint:
     name: Eslint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-          # Adicionando o fetch-depth para pegar o histórico completo
       - uses: actions/setup-node@v4
         with:
           node-version: "lts/hydrogen"
       - run: npm ci
       - run: npm run lint:eslint:check
-
   commitlint:
     name: commitlint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Corrigindo a indentação do fetch-depth
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: "lts/hydrogen"
