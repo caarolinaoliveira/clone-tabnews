@@ -19,7 +19,7 @@ describe("GET to /api/v1/status", () => {
       expect(responseBory.dependencies.database).toBeDefined();
 
       expect(responseBory.dependencies.database.version).toBe("16.6");
-      // expect(responseBory.dependencies.database.max_connections).toBe(100);
+      expect(responseBory.dependencies.database.max_connections).toBe(112);
       expect(responseBory.dependencies.database.opened_connections).toBe(1);
     });
   });
