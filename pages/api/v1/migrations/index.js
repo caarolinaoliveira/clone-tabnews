@@ -1,7 +1,6 @@
 import migrationRunner from "node-pg-migrate";
 import { join } from "node:path";
 import database from "infra/database";
-import { error } from "node:console";
 
 export default async function migrations(request, response) {
   const alloweMethods = ["GET", "POST"];
@@ -41,10 +40,10 @@ export default async function migrations(request, response) {
     }
   } catch (error) {
     console.error(error);
-    return response.status(500).json({ error: "Internal Server Error" }); // Adicionar resposta de erro
+    return response.status(500).json({ error: "Internal Server Error" }); 
   } finally {
     if (dbClient) {
-      await dbClient.end(); // Garantir que o cliente seja fechado
+      await dbClient.end(); 
     }
   }
 }
