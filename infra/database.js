@@ -1,20 +1,21 @@
-import { Client } from "pg";
+import { Client } from 'pg'
 
 async function query(queryObject) {
-  let client;
+  let client
+
   try {
-    client = await getNewCliente();
-    const result = await client.query(queryObject);
-    return result;
+    client = await getNewClient()
+    const result = await client.query(queryObject)
+    return result
   } catch (error) {
-    console.error(error);
-    throw error;
+    console.log(error)
+    throw error
   } finally {
-    await client.end();
+    await client.end()
   }
 }
 
-async function getNewCliente() {
+async function getNewClient() {
   const client = new Client({
     host: process.env.POSTGRES_HOST,
     port: process.env.POSTGRES_PORT,
@@ -22,24 +23,23 @@ async function getNewCliente() {
     database: process.env.POSTGRES_DB,
     password: process.env.POSTGRES_PASSWORD,
     ssl: true,
-  });
-  await client.connect();
-  return client;
+  })
+
+  await client.connect()
+
+  return client
 }
 
-const database = {
-  query,
-  getNewCliente,
-};
-export default database;
+const database = { query, getNewClient }
 
-// function getSSLValues() {
-//   if (process.env.POSTGRES_CA) {
-//     return {
-//       ca: process.env.POSTGRES_CA,
-//     };
-//   }
+export default database
 
-//   console.log("Node:" + process.env.NODE_ENV);
-//   return process.env.NODE_ENV === "production" ? true : false;
-// }
+function getSSLValues() {
+  if (process.env.POSTGRES_CA) {
+    return {
+      ca: process.env.POSTGRES_CA,
+    }
+  }
+
+  return process.env.NODE_ENV === 'production' ? true : false
+}
