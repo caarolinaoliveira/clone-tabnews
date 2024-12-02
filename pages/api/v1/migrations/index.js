@@ -1,7 +1,7 @@
 import migrationRunner from "node-pg-migrate";
 import { join } from "node:path";
 import database from "infra/database";
-// import { error } from "node:console";
+import { error } from "node:console";
 
 export default async function migrations(request, response) {
   const alloweMethods = ["GET", "POST"];
@@ -12,7 +12,7 @@ export default async function migrations(request, response) {
   }
   let dbClient;
   try {
-    dbClient = await database.getNewCliente();
+    dbClient = await database.getNewClient(); // Corrigir o nome do método
     const defaultMigrationOption = {
       dbClient: dbClient,
       dryRun: true,
@@ -41,8 +41,10 @@ export default async function migrations(request, response) {
     }
   } catch (error) {
     console.error(error);
-    throw error;
+    return response.status(500).json({ error: "Internal Server Error" }); // Adicionar resposta de erro
   } finally {
-    await dbClient.end();
+    if (dbClient) {
+      await dbClient.end(); // Garantir que o cliente seja fechado
+    }
   }
 }
