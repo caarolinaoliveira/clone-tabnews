@@ -34,12 +34,12 @@ const database = { query, getNewClient }
 
 export default database
 
-function getSSLValues() {
-  if (process.env.POSTGRES_CA) {
-    return {
-      ca: process.env.POSTGRES_CA,
-    }
-  }
+// function getSSLValues() {
+//   if (process.env.POSTGRES_CA) {
+//     return {
+//       ca: process.env.POSTGRES_CA,
+//     }
+//   }
 
-  return process.env.NODE_ENV === 'production' ? true : false
-}
+//   return process.env.NODE_ENV === 'production' ? true : false
+// }
